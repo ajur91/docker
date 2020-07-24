@@ -20,16 +20,16 @@ RUN apt-get update \
     lynx \
     psmisc \
     libssl-dev \
-	libedit2 \
-	libxslt1-dev \
-	apt-utils \
-	gnupg \
-	redis-tools \
-	curl \
-	unzip \
-	tar \
-	cron \
-	bash-completion \
+  	libedit2 \
+  	libxslt1-dev \
+  	apt-utils \
+  	gnupg \
+  	redis-tools \
+  	curl \
+  	unzip \
+  	tar \
+  	cron \
+  	bash-completion \
     && apt-get clean
 
 # INSTALL MAGENTO DEPENDENCIES

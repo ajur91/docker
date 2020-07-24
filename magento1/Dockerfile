@@ -22,7 +22,7 @@ RUN apt-get update \
     git \
     wget \
     zip \
-    vim \
+    nano \
     gcc \
     make \
     autoconf \
