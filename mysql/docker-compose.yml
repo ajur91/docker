@@ -1,15 +1,17 @@
 version: '3.5'
 networks:
-    net_db:
-        name: NetDb
+    net_db_mysql:
+        name: NetDbMysql
+        driver: bridge
         ipam:
             config:
                 - subnet: 172.20.0.0/16
 volumes:
     dbdata:
         driver: local
+
 services:
-    db:
+    mysql:
         image: mariadb
         restart: always
         container_name: mysql
@@ -20,7 +22,7 @@ services:
         volumes:
             - dbdata:/var/lib/mysql
         networks:
-            net_db:
+            net_db_mysql:
                 ipv4_address: 172.20.20.1
 
     phpmyadmin:
@@ -28,7 +30,7 @@ services:
         restart: always
         container_name: phpmyadmin
         environment:
-            - PMA_HOST=db
+            - PMA_HOST=mysql
             - PMA_USER=root
             - PMA_PASSWORD=root
             - UPLOAD_LIMIT=2048M
@@ -37,5 +39,5 @@ services:
         ports:
             - 8080:80
         networks:
-            net_db:
+            net_db_mysql:
                 ipv4_address: 172.20.20.20
