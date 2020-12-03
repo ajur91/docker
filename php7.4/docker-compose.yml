@@ -1,0 +1,19 @@
+version: '3.8'
+
+networks:
+    net_mysql:
+        external:
+            name: NetMysql
+services:
+    apache:
+        image: betox/php:7.4
+        ports:
+            - 85:80
+        volumes:
+            - .:/var/www/html
+            - ~/.composer:/var/www/.composer
+            - ~/.npm:/var/www/.npm
+        # environment:
+            # PHP_IDE_CONFIG: "serverName=Docker"
+        networks:
+            - net_mysql
