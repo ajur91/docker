@@ -1,30 +1,41 @@
 version: '3.8'
 
 networks:
-    net_mysql:
-        name: NetMysql
-        driver: bridge
-        ipam:
-            config:
-                - subnet: 172.20.20.0/16
+  yarrah-network:
+    driver: bridge
+
 volumes:
-    dbdata:
-        driver: local
+  dbdata:
+    driver: local
 
 services:
+    apache:
+        image: betox/php:7.1
+        ports:
+            - 85:80
+        volumes:
+            - .:/var/www/html
+            - ~/.composer:/var/www/.composer
+            - ~/.npm:/var/www/.npm
+        depends_on:
+          - mysql
+        links:
+          - mysql
+        networks:
+          - yarrah-network
+
     mysql:
         image: mariadb
         restart: always
         container_name: mysql
         ports:
-            - 3306:3306
+            - 3306
         environment:
             - MYSQL_ROOT_PASSWORD=root
         volumes:
             - dbdata:/var/lib/mysql
         networks:
-            net_mysql:
-                ipv4_address: 172.20.20.1
+            - yarrah-network
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -40,5 +51,4 @@ services:
         ports:
             - 8080:80
         networks:
-            net_mysql:
-                ipv4_address: 172.20.20.20
+            - yarrah-network
