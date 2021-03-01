@@ -34,7 +34,7 @@ services:
             - PMA_HOST=mysql
             - PMA_USER=root
             - PMA_PASSWORD=root
-            - UPLOAD_LIMIT=2048M
+            - UPLOAD_LIMIT=4048M
             - UPLOAD_MAX_FILESIZE=512M
             - MAX_EXECUTION_TIME=38000
         ports:

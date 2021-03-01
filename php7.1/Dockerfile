@@ -67,7 +67,9 @@ RUN apt-get update \
 RUN curl -sL https://deb.nodesource.com/setup_13.x | bash - \
     && apt-get install -y nodejs build-essential \
     && curl https://raw.githubusercontent.com/creationix/nvm/v0.16.1/install.sh | sh \
-    && npm i -g grunt-cli yarn
+    && npm i -g grunt-cli yarn \
+    && npm i -g gulp \
+    && npm i -g bower
 
 # INSTALL COMPOSER
 # -----------------------------

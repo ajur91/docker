@@ -13,6 +13,7 @@ RUN apt-get update \
     libmcrypt-dev \
     libpng-dev \
     libxslt1-dev \
+    libzip-dev \
     nano \
     wget \
     lynx \
@@ -27,6 +28,7 @@ RUN apt-get update \
   	unzip \
   	tar \
   	cron \
+    zip \
   	bash-completion \
     && apt-get clean
 
@@ -42,6 +44,7 @@ RUN docker-php-ext-configure \
     opcache \
     sockets \
     bcmath \
+    zip \
     soap
 
 
