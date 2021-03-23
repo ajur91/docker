@@ -5,7 +5,7 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 
 ## DOKER
 
-### 1 - Instala el paquete de requisitos previos
+### 1 - Instalar el paquete de requisitos previos
 ``
 	sudo apt-get install  curl apt-transport-https ca-certificates software-properties-common
 ``
@@ -28,17 +28,17 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 	apt-cache policy docker-ce
 ``
 
-### 3 - Instala Docker
+### 3 - Instalar Docker
 ``
 	sudo apt install docker-ce
 ``
 
-### 4 - Comprueba el estado de Docker
+### 4 - Comporbar el estado de Docker
 ``
 	sudo systemctl status docker
 ``
 
-### 5 - Cree el grupo de Docker.
+### 5 - Crear el grupo de usuario Docker.
 ``
 	sudo groupadd docker
 ``
@@ -47,19 +47,14 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 ``
 	sudo usermod -aG docker {user}
 ``
-### 7 - Debería cerrar la sesión y volver a iniciarla para que se vuelva a evaluar la membresía de su grupo o escribir el siguiente comando:
-``
-	su -s ${USER}
-``
 
+## DOCKER-COMPOSE
 
-## DOCKER-COMPOSER
-
-### 1 - Descargar la versión estable actual de Docker Compose
+### 1 - Descargar la versión estable/actual de docker-compose
 ``
 	sudo curl -L "https://github.com/docker/compose/releases/download/{ultima version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ``
-	#### reverencia de version 
+#### Referencia de version 
 	https://docs.docker.com/compose/install/
 
 ### 2 - Permisos
@@ -72,7 +67,7 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 	sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 ``
 
-### 4 - Ver version 
+### 4 - Ver versión 
 ``
 	docker-compose --version
 ``
@@ -86,6 +81,9 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 
 ### Manual de Ejecución
 1. Posicionarse en la carpeta del docker a ejecutar
+``
+	cd /repo_dockers
+``
 
 | Commands  | Description  |
 |---|---|
@@ -96,17 +94,18 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 | docker ps  | para ver la lista de contenedores en ejecución.  |
 | docker ps -a | para ver la lista de todos los contenedores.  |
 
-### Lista de contenedores
+### Lista de Dockers
 
 | Nombre  | Description  |
 |---|---|
 | magento1  | dockerFile y docker-compose del contenedor magento1 |
 | magento2  | dockerFile y docker-compose del contenedor magento2  |
 | mailhog  | docker-compose del contenedor mailhog |
-| mysql  | docker-compose del contenedor mysql  |
+| mysql  | docker-compose del contenedor mysql y phpMyAdmin|
 | oracle  | docker-compose del contenedor oracle  |
 | mongoDB  | docker-compose del contenedor mongoDB  |
+| PostgresSQL  | docker-compose del contenedor PostgresSQL y Adminer |
 | redis  | docker-compose del contenedor redis |
 | nodejs  | docker-compose del contenedor nodejs |
-| php7.1 to php8.0  | docker-compose del contenedores php |
+| PHP 5.6 to 8.0  | docker-compose de las diferentes versiones de php |
 | php8.0-OCI8  | docker-compose del contenedor php8.0 con OCI8 para integrar con DB Oracle  |
