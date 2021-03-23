@@ -1,0 +1,54 @@
+version: '3.8'
+
+networks:
+  yarrah-network:
+    driver: bridge
+
+volumes:
+  dbdata:
+    driver: local
+
+services:
+    apache:
+        image: betox/php:5.6
+        ports:
+            - 85:80
+        volumes:
+            - .:/var/www/html
+            - ~/.composer:/var/www/.composer
+            - ~/.npm:/var/www/.npm
+        depends_on:
+          - mysql
+        links:
+          - mysql
+        networks:
+          - yarrah-network
+
+    mysql:
+        image: mariadb
+        restart: always
+        container_name: mysql
+        ports:
+            - 3306
+        environment:
+            - MYSQL_ROOT_PASSWORD=root
+        volumes:
+            - dbdata:/var/lib/mysql
+        networks:
+            - yarrah-network
+
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        container_name: phpmyadmin
+        environment:
+            - PMA_HOST=mysql
+            - PMA_USER=root
+            - PMA_PASSWORD=root
+            - UPLOAD_LIMIT=2048M
+            - UPLOAD_MAX_FILESIZE=512M
+            - MAX_EXECUTION_TIME=38000
+        ports:
+            - 8080:80
+        networks:
+            - yarrah-network

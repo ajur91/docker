@@ -1,7 +1,6 @@
 FROM php:7.2-apache
 
 LABEL "AUTHOR" Alberto Urbaez <alberto.urbaez@25watts.com.ar>
-MAINTAINER 25Watts <info@25watts.com.ar>
 
 # INSTALL SYSTEM DEPENDENCIES
 # -----------------------------
@@ -41,10 +40,10 @@ RUN docker-php-ext-configure \
     mbstring \
     pdo_mysql \
     xsl \
-    zip \
     opcache \
     sockets \
     bcmath \
+    zip \
     soap
 
 RUN apt-get update -y && \
@@ -76,14 +75,14 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 # -----------------------------
 ENV XDEBUG_PORT 9000
 RUN yes | pecl install xdebug && \
-	 echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.iniOLD
-
+	 echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini
 
 # CONFIGURING SYSTEM
 # -----------------------------
+ADD .docker/config/php.ini /usr/local/etc/php/php.ini
+ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 RUN chmod +x /usr/local/bin/*
-
-
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
 	&& usermod -u 1000 www-data \

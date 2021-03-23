@@ -11,15 +11,19 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 ``
 
 ### 2 - Agrega los repositorios de Docker
+
 ``
 	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 ``
+
 ``
 	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 ``
+
 ``
 	sudo apt update
 ``
+
 ``
 	apt-cache policy docker-ce
 ``

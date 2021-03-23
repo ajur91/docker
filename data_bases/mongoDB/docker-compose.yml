@@ -13,9 +13,9 @@ volumes:
         node_modules:
 
 services:
-    db_mongo:
+    mongo:
         image: mongo:4.1.8-xenial
-        container_name: db_mongo
+        container_name: mongodb
         restart: unless-stopped
         environment:
             - MONGO_INITDB_ROOT_USERNAME=root
