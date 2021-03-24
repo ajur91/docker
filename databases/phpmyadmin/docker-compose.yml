@@ -23,5 +23,5 @@ services:
         ports:
             - 8080:80
         networks:
-            # - net_mysql
-            - net_mariadb
+            net_mariadb:
+                ipv4_address: 172.20.20.20
