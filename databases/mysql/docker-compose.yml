@@ -25,20 +25,3 @@ services:
         networks:
             net_mysql:
                 ipv4_address: 172.20.20.1
-
-    phpmyadmin:
-        image: phpmyadmin/phpmyadmin
-        restart: always
-        container_name: phpmyadmin
-        environment:
-            - PMA_HOST=mysql
-            - PMA_USER=root
-            - PMA_PASSWORD=root
-            - UPLOAD_LIMIT=4048M
-            - UPLOAD_MAX_FILESIZE=512M
-            - MAX_EXECUTION_TIME=38000
-        ports:
-            - 8080:80
-        networks:
-            net_mysql:
-                ipv4_address: 172.20.20.20

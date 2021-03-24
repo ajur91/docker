@@ -1,0 +1,27 @@
+version: '3.8'
+
+networks:
+    net_mysql:
+        external:
+            name: NetMysql
+    net_mariadb:
+        external:
+            name: NetMariadb
+
+services:
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        restart: always
+        container_name: phpmyadmin
+        environment:
+            - PMA_HOST=mysql
+            - PMA_USER=root
+            - PMA_PASSWORD=root
+            - UPLOAD_LIMIT=4048M
+            - UPLOAD_MAX_FILESIZE=512M
+            - MAX_EXECUTION_TIME=38000
+        ports:
+            - 8080:80
+        networks:
+            # - net_mysql
+            - net_mariadb

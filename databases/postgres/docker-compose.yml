@@ -23,13 +23,3 @@ services:
         networks:
             net_postgres:
                 ipv4_address: 172.60.62.1
-    adminer:
-        image: adminer
-        restart: always
-        ports:
-            - 8081:8080
-        volumes:
-            - dbdata:/var/lib/oracle
-        networks:
-            net_postgres:
-                ipv4_address: 172.60.61.1
