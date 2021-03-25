@@ -1,4 +1,6 @@
 # DOCKER + DOCKER-COMPOSE 
+[![Docker Pulls][ico-downloads]][link-dockerhub]
+[![Docker Stars][ico-dockerstars]][link-dockerhub]
 ### version YML - 3.8
 
 lista de docker y docker-compose configurados para trabajar de forma individual
@@ -165,3 +167,5 @@ Buscar la ip de la red docker
 			}
 		}
 	]
+
+[link-dockerhub]: https://hub.docker.com/repository/docker/25watts/php
