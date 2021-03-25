@@ -126,7 +126,7 @@ Validar que este enable ufw
 	sudo ufw status
 ``
 
-Anañir nueva regla de firewall
+Añadir nueva regla de firewall
 
 ``
 	sudo ufw allow in from {host.docker.internal}/16 to any port 9003 comment xdebug
