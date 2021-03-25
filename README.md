@@ -115,19 +115,23 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 
 ### 1 - Configurar un firewall con UFW
 habilitar ufw 
+
 ``
 	sudo ufw enable
 ``
 
 Validar que este enable ufw 
+
 ``
 	sudo ufw status
 ``
 
 Anañir nueva regla de firewall
+
 ``
 	sudo ufw allow in from {host.docker.internal}/16 to any port 9003 comment xdebug
 ``
+
 remplazar el host.docker.internal por el host que se comunica docker, para ver ip ingresar 
 
 ``
@@ -136,12 +140,12 @@ remplazar el host.docker.internal por el host que se comunica docker, para ver i
 Buscar la ip de la red docker
 
 ### 2 - Ajustar la config de XDebug en el docker-compose
-``
+
 	environment:
     	XDEBUG_CONFIG: client_host={host.docker.internal} client_port=9003 remote_enable=1 profiler_enable=1
-``
+
 ### 3 - Configurar el Vcode y XDebug
-``
+
 	"configurations": [
 		{
 			"name": "Listen for XDebug",
@@ -161,4 +165,3 @@ Buscar la ip de la red docker
 			}
 		}
 	]
-``
