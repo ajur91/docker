@@ -93,6 +93,7 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 | docker-compose exec --user www-data {CONTAINER} bash  | Entrar al bash de un servicio. |
 | docker ps  | para ver la lista de contenedores en ejecución.  |
 | docker ps -a | para ver la lista de todos los contenedores.  |
+| docker system prune -a | Depurar todos los containers en stop, networks, images, build cache.  |
 
 ### Lista de Dockers
 
@@ -109,3 +110,55 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 | nodejs  | docker-compose del contenedor nodejs |
 | PHP 5.6 to 8.0  | docker-compose de las diferentes versiones de php |
 | php8.0-OCI8  | docker-compose del contenedor php8.0 con OCI8 para integrar con DB Oracle  |
+
+## Configurar Xdebug 3.0.3 Linux
+
+### 1 - Configurar un firewall con UFW
+habilitar ufw 
+``
+	sudo ufw enable
+``
+
+Validar que este enable ufw 
+``
+	sudo ufw status
+``
+
+Anañir nueva regla de firewall
+``
+	sudo ufw allow in from {host.docker.internal}/16 to any port 9003 comment xdebug
+``
+remplazar el host.docker.internal por el host que se comunica docker, para ver ip ingresar 
+
+``
+	ip address
+``
+Buscar la ip de la red docker
+
+### 2 - Ajustar la config de XDebug en el docker-compose
+``
+	environment:
+    	XDEBUG_CONFIG: client_host={host.docker.internal} client_port=9003 remote_enable=1 profiler_enable=1
+``
+### 3 - Configurar el Vcode y XDebug
+``
+	"configurations": [
+		{
+			"name": "Listen for XDebug",
+			"type": "php",
+			"request": "launch",
+			"port": 9003,
+			"pathMappings": {
+				"/var/www/html/": "${workspaceFolder}"
+			},
+			"ignore": [
+				"**/vendor/**/*.php"
+			],
+			"xdebugSettings": {
+				"max_children": 10000,
+				"max_data": 10000,
+				"show_hidden": 1
+			}
+		}
+	]
+``

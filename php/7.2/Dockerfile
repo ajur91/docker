@@ -73,14 +73,17 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 # INSTALL XDEBUG
 # -----------------------------
-ENV XDEBUG_PORT 9000
-RUN yes | pecl install xdebug && \
-	 echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini
+
+#RUN pecl install xdebug && docker-php-ext-enable xdebug \
+
+#ENV XDEBUG_PORT 9000
+RUN pecl install -f xdebug \
+&& echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini;
 
 # CONFIGURING SYSTEM
 # -----------------------------
 ADD .docker/config/php.ini /usr/local/etc/php/php.ini
-ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
 RUN chmod +x /usr/local/bin/*
 RUN chmod 777 -Rf /var/www /var/www/.* \
