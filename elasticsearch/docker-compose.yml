@@ -5,7 +5,8 @@ volumes:
         driver: local
 
 networks:
-    esnet:
+    net_service:
+        name: net_service
 
 services:
     elasticsearch:

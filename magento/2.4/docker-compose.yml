@@ -1,12 +1,12 @@
 version: '3.8'
 
 networks:
-    net_mysql:
+    net_database:
         external:
-            name: NetMysql
-    net_redis:
+            name: net_database
+    net_service:
         external:
-            name: NetRedis
+            name: net_service
 services:
     apache:
         image: magento/magento-cloud-docker-elasticsearch
@@ -20,5 +20,5 @@ services:
         # environment:
             # PHP_IDE_CONFIG: "serverName=Docker"
         networks:
-            - net_mysql
-            - net_redis
+            - net_database
+            - net_service

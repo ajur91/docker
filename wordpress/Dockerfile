@@ -1,6 +1,5 @@
 FROM php:7.2-apache
 
-LABEL "AUTHOR" Leandro Ferrarotti <leandro.ferrarotti@25watts.com.ar>
 LABEL "AUTHOR" Alberto Urbaez <alberto.urbaez@25watts.com.ar>
 
 # INSTALL SYSTEM DEPENDENCIES
@@ -31,7 +30,7 @@ RUN apt-get update \
   	bash-completion \
     && apt-get clean
 
-# INSTALL MAGENTO DEPENDENCIES
+# INSTALL DEPENDENCIES
 # -----------------------------
 RUN docker-php-ext-configure \
     gd --with-freetype-dir=/usr/include/ --with-jpeg-dir=/usr/include/; \
@@ -40,11 +39,12 @@ RUN docker-php-ext-configure \
     intl \
     mbstring \
     pdo_mysql \
+    mysqli \
     xsl \
-    zip \
     opcache \
     sockets \
     bcmath \
+    zip \
     soap
 
 RUN apt-get update -y && \
@@ -70,15 +70,7 @@ RUN apt install nodejs -y \
 # INSTALL COMPOSER
 # -----------------------------
 RUN curl -sS https://getcomposer.org/installer | php -- \
---install-dir=/usr/bin --filename=composer --version=1.10.16 && chmod +x /usr/bin/composer 
-
-# INSTALL CODE SNIFFER
-# -----------------------------
-# RUN git clone https://github.com/magento/marketplace-eqp.git ~/.composer/vendor/magento/marketplace-eqp
-# RUN cd ~/.composer/vendor/magento/marketplace-eqp && composer install
-# RUN ln -s ~/.composer/vendor/magento/marketplace-eqp/vendor/bin/phpcs /usr/local/bin;
-
-# ENV PATH="/var/www/.composer/vendor/bin/:${PATH}"
+--install-dir=/usr/bin --filename=composer && chmod +x /usr/bin/composer 
 
 # INSTALL XDEBUG
 # -----------------------------
@@ -89,40 +81,23 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 RUN pecl install -f xdebug \
 && echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini;
 
-# INSTALL MHSENDMAIL
-# -----------------------------
-RUN DEBIAN_FRONTEND=noninteractive apt-get -y install golang-go \
-   && mkdir /opt/go \
-   && export GOPATH=/opt/go \
-   && go get github.com/mailhog/mhsendmail
-
-# INSTALL MAGERUN 2
-# -----------------------------
-# RUN wget https://files.magerun.net/n98-magerun2.phar \
-#	&& chmod +x ./n98-magerun2.phar \
-#	&& mv ./n98-magerun2.phar /usr/local/bin/
-
 # CONFIGURING SYSTEM
 # -----------------------------
 ADD .docker/config/php.ini /usr/local/etc/php/php.ini
 ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
-ADD .docker/config/magento.conf /etc/apache2/sites-available/magento.conf
-COPY .docker/bin/* /usr/local/bin/
-COPY .docker/users/* /var/www/
+
+ADD .docker/config/local.lan.conf /etc/apache2/sites-available/local.lan.conf
+RUN ln -s /etc/apache2/sites-available/local.lan.conf /etc/apache2/sites-enabled/local.lan.conf
+
 RUN chmod +x /usr/local/bin/*
-RUN ln -s /etc/apache2/sites-available/magento.conf /etc/apache2/sites-enabled/magento.conf
-
-RUN curl -o /etc/bash_completion.d/m2install-bash-completion https://raw.githubusercontent.com/yvoronoy/m2install/master/m2install-bash-completion
-RUN curl -o /etc/bash_completion.d/n98-magerun2.phar.bash https://raw.githubusercontent.com/netz98/n98-magerun2/master/res/autocompletion/bash/n98-magerun2.phar.bash
-RUN echo "source /etc/bash_completion" >> /root/.bashrc
-RUN echo "source /etc/bash_completion" >> /var/www/.bashrc
-
 RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& chown -Rf www-data:www-data /var/www /var/www/.* \
 	&& usermod -u 1000 www-data \
 	&& chsh -s /bin/bash www-data\
 	&& a2enmod rewrite \
-	&& a2enmod headers
-
+	&& a2enmod headers \
+  && a2ensite local.lan.conf \
+  && a2dissite 000-default.conf
+  
 VOLUME /var/www/html
 WORKDIR /var/www/html

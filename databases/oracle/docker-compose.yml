@@ -1,12 +1,10 @@
 version: '3.8'
 
 networks:
-    net_oracle:
-        name: NetOracle
+    net_database:
+        name: net_database
         driver: bridge
-        ipam:
-            config:
-                - subnet: 172.60.60.0/16
+
 volumes:
     dbdata:
         driver: local
@@ -21,5 +19,4 @@ services:
         volumes:
             - dbdata:/var/lib/oracle
         networks:
-            net_oracle:
-                ipv4_address: 172.60.60.1
+            - net_database

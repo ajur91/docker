@@ -1,11 +1,13 @@
 version: '3.8'
 
 networks:
-    net_nodejs:
-        name: NetNodejs
-        ipam:
-            config:
-                - subnet: 172.30.0.0/16
+    net_database:
+        external:
+            name: net_database
+    net_service:
+        external:
+            name: net_service
+
 services:
     nodejs:
         image: nodejs

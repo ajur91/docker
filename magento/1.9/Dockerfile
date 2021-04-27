@@ -78,7 +78,7 @@ RUN echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)"
 
 # INSTALL MODMAN
 # -----------------------------
-RUN wget https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -O /usr/local/bin/modma
+#RUN wget https://raw.githubusercontent.com/colinmollenhour/modman/master/modman -O /usr/local/bin/modma
 
 # INSTALL SSH
 # -----------------------------
@@ -96,13 +96,13 @@ RUN wget https://raw.githubusercontent.com/colinmollenhour/modman/master/modman 
 
 # CONFIGURING SYSTEM
 # -----------------------------
-ADD .docker/config/php.ini /usr/local/etc/php/php.ini
-ADD .docker/config/magento.conf /etc/apache2/sites-available/magento.conf
-ADD .docker/config/custom-xdebug.ini /usr/local/etc/php/conf.d/custom-xdebug.ini
-COPY .docker/bin/* /usr/local/bin/
-COPY .docker/users/* /var/www/
+# ADD .docker/config/php.ini /usr/local/etc/php/php.ini
+# ADD .docker/config/magento.conf /etc/apache2/sites-available/magento.conf
+# ADD .docker/config/custom-xdebug.ini /usr/local/etc/php/conf.d/custom-xdebug.ini
+# COPY .docker/bin/* /usr/local/bin/
+# COPY .docker/users/* /var/www/
 RUN chmod +x /usr/local/bin/*
-RUN ln -s /etc/apache2/sites-available/magento.conf /etc/apache2/sites-enabled/magento.conf
+#RUN ln -s /etc/apache2/sites-available/magento.conf /etc/apache2/sites-enabled/magento.conf
 
 VOLUME ["/var/www/html"]
 WORKDIR /var/www/html

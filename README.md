@@ -168,4 +168,4 @@ Buscar la ip de la red docker
 		}
 	]
 
-[link-dockerhub]: https://hub.docker.com/repository/docker/25watts/php
+[link-dockerhub]: https://hub.docker.com/repository/docker/betox/php

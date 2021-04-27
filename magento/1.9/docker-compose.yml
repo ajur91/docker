@@ -1,9 +1,12 @@
 version: '3.8'
 
 networks:
-    net_mysql:
+    net_database:
         external:
-            name: NetMysql
+            name: net_database
+    net_service:
+        external:
+            name: net_service
 
 services:
     apache:
@@ -14,4 +17,5 @@ services:
             - .:/var/www/html
             - ~/.composer:/var/www/.composer
         networks:
-            - net_mysql
+            - net_database
+            - net_service

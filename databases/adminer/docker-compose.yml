@@ -1,15 +1,9 @@
 version: '3.8'
 
 networks:
-    net_mysql:
-        external:
-            name: NetMysql
-    net_postgres:
-        external:
-            name: NetPostgres
-    net_oracle:
-        external:
-            name: NetOracle
+    net_database:
+        name: net_database
+        driver: bridge
 
 services:
     adminer:
@@ -18,6 +12,4 @@ services:
         ports:
             - 8082:8080
         networks:
-            - net_mysql
-            - net_postgres
-            # - net_oracle
+            - net_database
