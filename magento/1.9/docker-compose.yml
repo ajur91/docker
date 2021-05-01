@@ -1,21 +1,16 @@
 version: '3.8'
 
 networks:
-    net_database:
-        external:
-            name: net_database
     net_service:
         external:
             name: net_service
 
 services:
     apache:
-        image: betox/magento1:latest
+        image: betox/magento:1.9
         ports:
             - 85:80 # web
         volumes:
             - .:/var/www/html
-            - ~/.composer:/var/www/.composer
         networks:
-            - net_database
             - net_service

@@ -1,25 +1,19 @@
 version: '3.8'
 
 networks:
-    net_database:
-        external:
-            name: net_database
     net_service:
         external:
             name: net_service
+
 services:
     apache:
-        image: betox/magento2:latest
-        # build: .
+        image: betox/magento2:2.3
         ports:
-            - 85:80
+            - 86:80
             - 443:443
         volumes:
-            - .:/var/www/html
+            - .:/var/www/html:cached
             - ~/.composer:/var/www/.composer
             - ~/.npm:/var/www/.npm
-        # environment:
-            # PHP_IDE_CONFIG: "serverName=Docker"
         networks:
-            - net_database
             - net_service

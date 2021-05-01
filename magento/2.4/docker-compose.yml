@@ -1,24 +1,21 @@
 version: '3.8'
 
 networks:
-    net_database:
-        external:
-            name: net_database
     net_service:
         external:
             name: net_service
+
+volumes:
+    apache-sync-jmc:
+        external: true
+
 services:
     apache:
-        image: magento/magento-cloud-docker-elasticsearch
+        image: betox/magento:2.4
         ports:
             - 85:80
             - 443:443
         volumes:
-            - .:/var/www/html
-            - ~/.composer:/var/www/.composer
-            - ~/.npm:/var/www/.npm
-        # environment:
-            # PHP_IDE_CONFIG: "serverName=Docker"
+            - apache-sync-jmc:/var/www/html:nocopy,delegated
         networks:
-            - net_database
             - net_service

@@ -1,6 +1,6 @@
 FROM php:7.2-apache
 
-LABEL "AUTHOR" Alberto Urbaez <alberto.urbaez@25watts.com.ar>
+LABEL "AUTHOR" Alberto Urbaez <info@albertourbaez.com>
 
 # INSTALL SYSTEM DEPENDENCIES
 # -----------------------------

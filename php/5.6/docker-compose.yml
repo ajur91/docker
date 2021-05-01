@@ -1,16 +1,12 @@
 version: '3.8'
 
 networks:
-    net_database:
-        external:
-            name: net_database
     net_service:
         external:
             name: net_service
-
 services:
     apache:
-        image: betox/php:5.6
+        image: 25watts/php:5.6
         ports:
             - 85:80
         volumes:
@@ -18,5 +14,4 @@ services:
             - ~/.composer:/var/www/.composer
             - ~/.npm:/var/www/.npm
         networks:
-            - net_database
             - net_service
