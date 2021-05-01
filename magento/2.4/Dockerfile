@@ -1,8 +1,5 @@
 FROM betox/php:7.4
 
-
-LABEL "AUTHOR" José Amietta <jose.amietta@25watts.com.ar>
-
 USER root
 
 # SET DEFAULT ENVIRONMENT

@@ -7,7 +7,7 @@ networks:
 
 services:
     apache:
-        image: 25watts/php:8.0-oci8
+        image: betox/php:8.0-oci8
         ports:
             - 85:80
         volumes:

@@ -6,7 +6,7 @@ networks:
             name: net_service
 services:
     apache:
-        image: 25watts/php:7.2
+        image: betox/php:7.2
         ports:
             - 85:80
         volumes:

@@ -1,7 +1,5 @@
 FROM php:5.6-apache
 
-
-
 LABEL "AUTHOR" Alberto Urbaez <info@albertourbaez.com>
 # INSTALL SYSTEM DEPENDENCIES
 # -----------------------------
