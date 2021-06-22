@@ -1,11 +1,11 @@
 FROM betox/php:7.4
 
-LABEL "AUTHOR" Alberto Urbaez <info@albertourbaez.com>
+LABEL "AUTHOR" Alberto Urbaez <albertourbaez20@gmail.com>
 
 # SET DEFAULT ENVIRONMENT
 # -----------------------------
 ENV COMPOSER_VERSION="2.0.11" \
-    NODE_VERSION="setup_12.x"
+    NODE_VERSION="setup_14.x"
 
 # INSTALL NODE, NVM, NPM AND GRUNT
 # -----------------------------
@@ -36,10 +36,9 @@ RUN ln -s /etc/apache2/sites-available/local.lan.conf /etc/apache2/sites-enabled
     && a2ensite local.lan.conf \
     && a2dissite 000-default.conf
 
-COPY .docker/bin/entrypoint.sh /entrypoint.sh
-RUN chmod +x /entrypoint.sh
-
-ENTRYPOINT ["/entrypoint.sh"]
+COPY .docker/bin/* /usr/local/bin/
+# RUN chmod +x /entrypoint.sh
+# ENTRYPOINT ["/entrypoint.sh"]
 
 RUN chmod +x /usr/local/bin/*
 RUN chmod 777 -Rf /var/www /var/www/.* \
@@ -49,4 +48,4 @@ RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& a2enmod rewrite \
 	&& a2enmod headers
 
-CMD ["apache2-foreground"]
+#CMD ["apache2-foreground"]

@@ -1,11 +1,23 @@
-# DOCKER + DOCKER-COMPOSE 
-[![Docker Pulls][ico-downloads]][link-dockerhub]
-[![Docker Stars][ico-dockerstars]][link-dockerhub]
-### version YML - 3.8
+<br />
+<p align="center">
+	<a href="https://github.com/ajur91">
+		<img align="center" width="500" src="https://github.com/ajur91/ajur91/raw/master/assets/logo.png" style="max-width:100%;">  
+	</a>
 
-lista de docker y docker-compose configurados para trabajar de forma individual
+  <h1 align="center">DOCKER + DOCKER-COMPOSE </h1>
 
-## DOKER
+  <p align="center">
+    Lista de docker y docker-compose configurados para trabajar como micros-servicios
+    <br />
+    <a href="https://docs.docker.com/compose/install"><strong>Docker»</strong></a>
+    <br />
+  </p>
+</p>
+
+---
+
+# DOKER
+## INSTALACIÓN
 
 ### 1 - Instalar el paquete de requisitos previos
 ``
@@ -50,13 +62,16 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 	sudo usermod -aG docker {user}
 ``
 
-## DOCKER-COMPOSE
+---
 
+# DOCKER-COMPOSE
+## INSTALACIÓN
 ### 1 - Descargar la versión estable/actual de docker-compose
+
 ``
 	sudo curl -L "https://github.com/docker/compose/releases/download/{ultima version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ``
-#### Referencia de version 
+### Referencia de version 
 	https://docs.docker.com/compose/install/
 
 ### 2 - Permisos
@@ -78,6 +93,8 @@ lista de docker y docker-compose configurados para trabajar de forma individual
 ``
 	sudo chmod 666 /var/run/docker.sock
 ``
+
+---
 
 ## LISTA DE COMANDOS
 
@@ -168,4 +185,21 @@ Buscar la ip de la red docker
 		}
 	]
 
-[link-dockerhub]: https://hub.docker.com/repository/docker/betox/php
+
+---
+</br>
+</br>
+<p align="center">
+ <img align="center" width="150" src="https://github.com/ajur91/ajur91/raw/master/assets/logo.png" /> 
+ </br>
+ Ing. Alberto Urbaez
+ </br>
+ <a href="https://albertourbaez.com/en">AlbertoUrbaez.com</a>
+</p>
+
+<p align="center">
+ <img src="https://img.shields.io/github/forks/ajur91/ajur91" /> 
+ <img src="https://img.shields.io/github/stars/ajur91/ajur91"/> 
+ <img src="https://img.shields.io/github/followers/ajur91"/>
+ <img src="https://img.shields.io/github/watchers/ajur91/ajur91"/>
+</p>
