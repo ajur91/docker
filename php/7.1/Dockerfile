@@ -1,7 +1,6 @@
 FROM php:7.1-apache
 
-
-LABEL "AUTHOR" Alberto Urbaez <info@albertourbaez.com>
+LABEL "AUTHOR" Alberto Urbaez <albertourbaez20@gmail.com>
 
 # INSTALL SYSTEM DEPENDENCIES
 # -----------------------------
@@ -48,6 +47,7 @@ RUN docker-php-ext-configure \
   pdo_mysql \
   soap \
   xsl \
+  xml \
   zip 
   #dev
 
@@ -59,18 +59,19 @@ RUN apt-get update \
     && apt-get install -y \
     libpcre3 \
     libpcre3-dev \
-  # php-pear \
     && pecl install oauth \
     && echo "extension=oauth.so" > /usr/local/etc/php/conf.d/docker-php-ext-oauth.ini
 
 # INSTALL XDEBUG
 # -----------------------------
-#ENV XDEBUG_PORT 9000
-#RUN yes | pecl install xdebug && \
-#   echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.iniOLD
+#RUN pecl install -f xdebug-3.0.3
+#RUN docker-php-ext-enable xdebug
 
 # CONFIGURING SYSTEM
 # -----------------------------
+ADD .docker/config/php.ini /usr/local/etc/php/php.ini
+ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 RUN chmod 777 -Rf /var/www /var/www/.* \
   && chown -Rf www-data:www-data /var/www /var/www/.* \
   && usermod -u 1000 www-data \

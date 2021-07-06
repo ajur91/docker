@@ -1,7 +1,6 @@
 FROM php:8.0-apache
 
-
-LABEL "AUTHOR" Alberto Urbaez <info@albertourbaez.com>
+LABEL "AUTHOR" Alberto Urbaez <albertourbaez20@gmail.com>
 
 # INSTALL SYSTEM DEPENDENCIES
 # -----------------------------
@@ -18,16 +17,16 @@ RUN apt-get update \
     lynx \
     psmisc \
     libssl-dev \
-  	libedit2 \
-  	libxslt1-dev \
-  	apt-utils \
-  	gnupg \
-  	redis-tools \
-  	curl \
-  	unzip \
-  	tar \
-  	cron \
-  	bash-completion \
+    libedit2 \
+    libxslt1-dev \
+    apt-utils \
+    gnupg \
+    redis-tools \
+    curl \
+    unzip \
+    tar \
+    cron \
+    bash-completion \
     && apt-get clean
 
 # INSTALL DEPENDENCIES
@@ -47,20 +46,22 @@ RUN docker-php-ext-configure \
 # INSTALL OAUTH
 # -----------------------------
 RUN apt-get update \
-  	&& apt-get install -y \
-  	libpcre3 \
-  	libpcre3-dev \
-  	&& pecl install oauth \
-  	&& echo "extension=oauth.so" > /usr/local/etc/php/conf.d/docker-php-ext-oauth.ini
+    && apt-get install -y \
+    libpcre3 \
+    libpcre3-dev \
+    && pecl install oauth \
+    && echo "extension=oauth.so" > /usr/local/etc/php/conf.d/docker-php-ext-oauth.ini
 
 # INSTALL XDEBUG
 # -----------------------------
-ENV XDEBUG_PORT 9000
-RUN yes | pecl install xdebug && \
-	 echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.iniOLD
+RUN pecl install -f xdebug
+RUN docker-php-ext-enable xdebug
 
 # CONFIGURING SYSTEM
 # -----------------------------
+ADD .docker/config/php.ini /usr/local/etc/php/php.ini
+ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+
 RUN chmod +x /usr/local/bin/*
 
 RUN chmod 777 -Rf /var/www /var/www/.* \

@@ -1,0 +1,31 @@
+version: '3.8'
+
+networks:
+    net_service:
+        external:
+            name: net_service
+services:
+    nodejs:
+        image: betox/node:14
+        ports:
+            - 4040:4040
+        command: node app.js
+        volumes:
+            - .:/app
+        environment:
+            NODE_ENV: development
+        networks:
+            - net_service
+
+
+        container_name: node_${NODEJS_SERVER_NAME}
+        image: ${NODEJS_CONTAINER_IMAGE}
+        user: ${NODEJS_USER}
+        command: ${NODEJS_COMMAND}
+        ports:
+            - "4040:4040"
+        environment:
+            NODE_ENV: ${NODEJS_ENV}
+        volumes:
+            - ${PWD}:/home/node/project
+        working_dir: /home/node/project

@@ -7,9 +7,9 @@ networks:
 
 services:
     apache:
-        image: 25watts/magento:1.9
+        image: betox/symfony:5.x-oracle
         ports:
-            - 85:80 # web
+            - 85:80
         volumes:
             - .:/var/www/html
         networks:

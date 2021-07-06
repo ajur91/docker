@@ -12,7 +12,7 @@ networks:
             name: NetMailHog
 services:
     apache:
-        image: betox/magento2:2.1
+        image: 25watts/magento2:2.1
         ports:
             - 85:80
             - 443:443

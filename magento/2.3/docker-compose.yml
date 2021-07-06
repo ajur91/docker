@@ -7,12 +7,12 @@ networks:
 
 services:
     apache:
-        image: betox/magento2:2.3
+        image: 25watts/magento:2.3
         ports:
             - 86:80
             - 443:443
         volumes:
-            - .:/var/www/html:cached
+            - .:/var/www/html
             - ~/.composer:/var/www/.composer
             - ~/.npm:/var/www/.npm
         networks:

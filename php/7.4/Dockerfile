@@ -1,66 +1,66 @@
 FROM php:7.4-apache
 
-
-LABEL "AUTHOR" Alberto Urbaez <info@albertourbaez.com>
+LABEL "AUTHOR" Alberto Urbaez <albertourbaez20@gmail.com>
 
 # INSTALL SYSTEM DEPENDENCIES
 # -----------------------------
 RUN apt-get update \
-  && apt-get install -y \
-    libfreetype6-dev \
-    libicu-dev \
-    libjpeg62-turbo-dev \
-    libmcrypt-dev \
-    libpng-dev \
-    libxslt1-dev \
-    libzip-dev \
-    nano \
-    wget \
-    lynx \
-    psmisc \
-    libssl-dev \
-  	libedit2 \
-  	libxslt1-dev \
-  	apt-utils \
-  	gnupg \
-  	redis-tools \
-  	curl \
-  	unzip \
-  	tar \
-  	cron \
-    zip \
-  	bash-completion \
-    && apt-get clean
+	&& apt-get install -y \
+	libfreetype6-dev \
+	libicu-dev \
+	libjpeg62-turbo-dev \
+	libmcrypt-dev \
+	libpng-dev \
+	libxslt1-dev \
+	libzip-dev \
+	nano \
+	wget \
+	lynx \
+	psmisc \
+	libssl-dev \
+	libedit2 \
+	apt-utils \
+	gnupg \
+	redis-tools \
+	curl \
+	git \
+	unzip \
+	tar \
+	cron \
+	zip \
+	bash-completion \
+	&& apt-get clean
 
 # INSTALL DEPENDENCIES
 # -----------------------------
 RUN docker-php-ext-configure \
-  	gd --with-freetype --with-jpeg; \
-  	docker-php-ext-install \
-  	opcache \
-  	gd \
-  	bcmath \
-  	intl \
-  	mysqli \
-  	pdo_mysql \
-  	soap \
-  	xsl \
-  	zip \
-  	sockets
+	gd --with-freetype --with-jpeg; \
+	docker-php-ext-install \
+	opcache \
+	gd \
+	bcmath \
+	intl \
+	mysqli \
+	pdo_mysql \
+	soap \
+	xsl \
+	zip \
+	xml \
+	sockets
     
 # INSTALL OAUTH
 # -----------------------------
 RUN apt-get update \
-  	&& apt-get install -y \
-  	libpcre3 \
-  	libpcre3-dev \
-  	&& pecl install oauth \
-  	&& echo "extension=oauth.so" > /usr/local/etc/php/conf.d/docker-php-ext-oauth.ini
+	&& apt-get install -y \
+	libpcre3 \
+	libpcre3-dev \
+	&& pecl install oauth \
+	&& echo "extension=oauth.so" > /usr/local/etc/php/conf.d/docker-php-ext-oauth.ini
 
 # INSTALL XDEBUG
 # -----------------------------
-RUN pecl install -f xdebug \
-&& echo "zend_extension=$(find /usr/local/lib/php/extensions/ -name xdebug.so)" > /usr/local/etc/php/conf.d/xdebug.ini;
+RUN pecl install -f xdebug
+RUN docker-php-ext-enable xdebug
 
 # CONFIGURING SYSTEM
 # -----------------------------

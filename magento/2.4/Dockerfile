@@ -1,4 +1,6 @@
-FROM betox/php:7.4
+FROM 25watts/php:7.4
+
+LABEL "AUTHOR" José Amietta <jose.amietta@25watts.com.ar>
 
 USER root
 

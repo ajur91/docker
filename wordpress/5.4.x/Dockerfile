@@ -1,11 +1,11 @@
-FROM betox/php:8.0
+FROM 25watts/php:7.4
 
 LABEL "AUTHOR" Alberto Urbaez <albertourbaez20@gmail.com>
 
 # SET DEFAULT ENVIRONMENT
 # -----------------------------
-ENV COMPOSER_VERSION="2.0.11" \
-    NODE_VERSION="setup_14.x"
+ENV COMPOSER_VERSION="1.10.16" \
+    NODE_VERSION="setup_12.x"
 
 # INSTALL NODE, NVM, NPM AND GRUNT
 # -----------------------------
@@ -28,14 +28,11 @@ RUN curl -sS https://getcomposer.org/installer | php -- \
 
 # CONFIGURING SYSTEM
 # -----------------------------
-ADD .docker/config/local.lan.conf /etc/apache2/sites-available/local.lan.conf
-RUN ln -s /etc/apache2/sites-available/local.lan.conf /etc/apache2/sites-enabled/local.lan.conf \
-    && a2ensite local.lan.conf \
-    && a2dissite 000-default.conf
+ADD .docker/config/php.ini /usr/local/etc/php/php.ini
+ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/docker-php-ext-xdebug.ini
 
-COPY .docker/bin/* /usr/local/bin/
-# RUN chmod +x /entrypoint.sh
-# ENTRYPOINT ["/entrypoint.sh"]
+ADD .docker/config/local.lan.conf /etc/apache2/sites-available/local.lan.conf
+RUN ln -s /etc/apache2/sites-available/local.lan.conf /etc/apache2/sites-enabled/local.lan.conf
 
 RUN chmod +x /usr/local/bin/*
 RUN chmod 777 -Rf /var/www /var/www/.* \
@@ -43,6 +40,9 @@ RUN chmod 777 -Rf /var/www /var/www/.* \
 	&& usermod -u 1000 www-data \
 	&& chsh -s /bin/bash www-data\
 	&& a2enmod rewrite \
-	&& a2enmod headers
-
-#CMD ["apache2-foreground"]
+	&& a2enmod headers \
+  && a2ensite local.lan.conf \
+  && a2dissite 000-default.conf
+  
+VOLUME /var/www/html
+WORKDIR /var/www/html

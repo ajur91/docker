@@ -11,7 +11,7 @@ volumes:
 
 services:
     apache:
-        image: betox/magento:2.4
+        image: 25watts/magento:2.4
         ports:
             - 85:80
             - 443:443

@@ -26,6 +26,10 @@ RUN apt-get update && \
 RUN curl -sS https://getcomposer.org/installer | php -- \
 --install-dir=/usr/bin --filename=composer --version=${COMPOSER_VERSION} && chmod +x /usr/bin/composer 
 
+# INSTALL MONGODB
+# -----------------------------
+RUN pecl install mongodb && docker-php-ext-enable mongodb
+
 # CONFIGURING SYSTEM
 # -----------------------------
 ADD .docker/config/local.lan.conf /etc/apache2/sites-available/local.lan.conf
