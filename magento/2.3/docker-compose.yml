@@ -6,7 +6,7 @@ networks:
             name: net_service
 
 services:
-    apache:
+    web:
         image: 25watts/magento:2.3
         ports:
             - 86:80

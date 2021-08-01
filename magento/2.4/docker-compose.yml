@@ -10,7 +10,7 @@ volumes:
         external: true
 
 services:
-    apache:
+    web:
         image: 25watts/magento:2.4
         ports:
             - 85:80

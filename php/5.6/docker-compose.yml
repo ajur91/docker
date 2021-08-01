@@ -5,7 +5,7 @@ networks:
         external:
             name: net_service
 services:
-    apache:
+    web:
         image: betox/php:5.6
         ports:
             - 85:80

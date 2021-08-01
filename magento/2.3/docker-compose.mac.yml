@@ -11,7 +11,7 @@ networks:
         external:
             name: NetMailHog
 services:
-    apache:
+    web:
         image: 25watts/magento2:2.1
         ports:
             - 85:80

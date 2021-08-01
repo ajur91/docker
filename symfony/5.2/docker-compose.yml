@@ -6,7 +6,7 @@ networks:
             name: net_service
 
 services:
-    apache:
+    web:
         image: betox/symfony:5.x
         ports:
             - 8000:80
