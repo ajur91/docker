@@ -20,6 +20,7 @@
 ## INSTALACIÓN AUTOMATICA
 
 Ejecutar en la raiz de la capeta el sigiente comando
+
 	sh docker-install
 
 ## INSTALACIÓN MANUAL
