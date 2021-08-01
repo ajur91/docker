@@ -1,0 +1,38 @@
+#!/usr/bin/env bash
+echo "
+=================================
+INSTALL DOCKER AND DOCKER-COMPOSE
+---------------------------------
+\e[33mv.1.0.0\e[0m
+=================================
+"
+sudo apt-get --yes install  curl apt-transport-https ca-certificates software-properties-common i
+
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository -y "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+sudo apt --yes update
+apt-cache policy docker-ce
+
+sudo apt --yes install docker-ce
+sudo groupadd docker
+sudo usermod -aG docker $USER
+
+echo "Installer docker-compose"
+COMPOSE_VERSION=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | grep 'tag_name' | cut -d '"'  -f 4)
+
+echo "
+-------------------------------------
+docker-compose version = ${COMPOSE_VERSION}
+-------------------------------------
+"
+
+sudo curl -L "https://github.com/docker/compose/releases/download/${COMPOSE_VERSION}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
+sudo chmod +x /usr/local/bin/docker-compose
+sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+
+sudo chmod 666 /var/run/docker.sock
+
+echo "\e[92mSuccessfully completed\e[0m"
+docker-compose -v
+docker -v
+exit 0

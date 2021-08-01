@@ -17,82 +17,57 @@
 ---
 
 # DOKER
-## INSTALACIÓN
+## INSTALACIÓN AUTOMATICA
+
+Ejecutar en la raiz de la capeta el sigiente comando
+	sh docker-install
+
+## INSTALACIÓN MANUAL
 
 ### 1 - Instalar el paquete de requisitos previos
-``
-	sudo apt-get install  curl apt-transport-https ca-certificates software-properties-common
-``
+
+	$ sudo apt-get install  curl apt-transport-https ca-certificates software-properties-common
+
 
 ### 2 - Agrega los repositorios de Docker
 
-``
-	curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-``
-
-``
-	sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
-``
-
-``
-	sudo apt update
-``
-
-``
-	apt-cache policy docker-ce
-``
+	$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+	$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
+	$ sudo apt update
+	$ apt-cache policy docker-ce
 
 ### 3 - Instalar Docker
-``
-	sudo apt install docker-ce
-``
+	$ sudo apt install docker-ce
 
 ### 4 - Comporbar el estado de Docker
-``
-	sudo systemctl status docker
-``
+	$ sudo systemctl status docker
 
 ### 5 - Crear el grupo de usuario Docker.
-``
-	sudo groupadd docker
-``
+	$ sudo groupadd docker
 
 ### 6 - Agregue su usuario al grupo de Docker.
-``
-	sudo usermod -aG docker {user}
-``
+	$ sudo usermod -aG docker $USER
 
 ---
 
 # DOCKER-COMPOSE
 ## INSTALACIÓN
 ### 1 - Descargar la versión estable/actual de docker-compose
-
-``
-	sudo curl -L "https://github.com/docker/compose/releases/download/{ultima version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-``
+	$ sudo curl -L "https://github.com/docker/compose/releases/download/{ultima version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
 ### Referencia de version 
-	https://docs.docker.com/compose/install/
+	$ https://docs.docker.com/compose/install/
 
 ### 2 - Permisos
-``
-	sudo chmod +x /usr/local/bin/docker-compose
-``
+	$ sudo chmod +x /usr/local/bin/docker-compose
 
 ### 3 - Crear un symbolic link
-``
-	sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
-``
+	$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
 
 ### 4 - Ver versión 
-``
-	docker-compose --version
-``
+	$ docker-compose --version
 
 ### 5 - Ajustar Permisos
-``
-	sudo chmod 666 /var/run/docker.sock
-``
+	$ sudo chmod 666 /var/run/docker.sock
 
 ---
 
@@ -100,9 +75,7 @@
 
 ### Manual de Ejecución
 1. Posicionarse en la carpeta del docker a ejecutar
-``
 	cd /repo_dockers
-``
 
 | Commands  | Description  |
 |---|---|
@@ -135,27 +108,19 @@
 ### 1 - Configurar un firewall con UFW
 habilitar ufw 
 
-``
-	sudo ufw enable
-``
+	$ sudo ufw enable
 
 Validar que este enable ufw 
 
-``
-	sudo ufw status
-``
+	$ sudo ufw status
 
 Añadir nueva regla de firewall
 
-``
-	sudo ufw allow in from {host.docker.internal}/16 to any port 9003 comment xdebug
-``
+	$ sudo ufw allow in from {host.docker.internal}/16 to any port 9003 comment xdebug
 
 remplazar el host.docker.internal por el host que se comunica docker, para ver ip ingresar 
 
-``
-	ip address
-``
+	$ ip address
 Buscar la ip de la red docker
 
 ### 2 - Ajustar la config de XDebug en el docker-compose
