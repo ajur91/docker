@@ -1,9 +1,8 @@
 version: '3.8'
 
 networks:
-    net_service:
-        name: net_service
-        driver: bridge
+    net_betox:
+        name: net_betox
 
 services:
     mailhog:
@@ -14,4 +13,4 @@ services:
             - 1025:1025 # smtp server
             - 8025:8025 # web ui
         networks:
-            - net_service
+            - net_betox

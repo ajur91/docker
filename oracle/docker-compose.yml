@@ -1,9 +1,8 @@
 version: '3.8'
 
 networks:
-    net_service:
-        name: net_service
-        driver: bridge
+    net_betox:
+        name: net_betox
 
 volumes:
     oracle_data:
@@ -19,4 +18,4 @@ services:
         volumes:
             - oracle_data:/var/lib/oracle
         networks:
-            - net_service
+            - net_betox

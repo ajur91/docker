@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_service:
-        name: net_service
-        driver: bridge
+    net_betox:
+        external:
+            name: net_betox
 
 volumes:
     mysql_data:
@@ -21,7 +21,7 @@ services:
         volumes:
             - mysql_data:/var/lib/mysql
         networks:
-            - net_service
+            - net_betox
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -37,4 +37,4 @@ services:
         ports:
             - 8080:80
         networks:
-            - net_service
+            - net_betox

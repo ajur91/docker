@@ -17,64 +17,87 @@
 ---
 
 # DOKER
+
+## PREREQUISITOS LINUX
+- CURL
 ## INSTALACIÓN AUTOMATICA
 
+### LINUX
+
 Ejecutar en la raiz de la capeta el sigiente comando
-	sh docker-install
+
+	$ sh docker-install
 
 ## INSTALACIÓN MANUAL
 
-### 1 - Instalar el paquete de requisitos previos
+### DOCKER
+
+- Instalar el paquete de requisitos previos
 
 	$ sudo apt-get install  curl apt-transport-https ca-certificates software-properties-common
 
-
-### 2 - Agrega los repositorios de Docker
+- Agrega los repositorios de Docker
 
 	$ curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 	$ sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable"
 	$ sudo apt update
 	$ apt-cache policy docker-ce
 
-### 3 - Instalar Docker
+- Instalar Docker
 	$ sudo apt install docker-ce
 
-### 4 - Comporbar el estado de Docker
+- Comporbar el estado de Docker
 	$ sudo systemctl status docker
 
-### 5 - Crear el grupo de usuario Docker.
+- Crear el grupo de usuario Docker.
 	$ sudo groupadd docker
 
-### 6 - Agregue su usuario al grupo de Docker.
+- Agregue su usuario al grupo de Docker.
 	$ sudo usermod -aG docker $USER
 
----
-
-# DOCKER-COMPOSE
-## INSTALACIÓN
-### 1 - Descargar la versión estable/actual de docker-compose
+### DOCKER-COMPOSE
+1- Descargar la versión estable/actual de docker-compose
+~~~
 	$ sudo curl -L "https://github.com/docker/compose/releases/download/{ultima version}/docker-compose-$(uname -s)-$(uname -m)" -o /usr/local/bin/docker-compose
-### Referencia de version 
+~~~
+- Referencia de version 
 	$ https://docs.docker.com/compose/install/
 
-### 2 - Permisos
+2- Permisos
+~~~
 	$ sudo chmod +x /usr/local/bin/docker-compose
+~~~
 
-### 3 - Crear un symbolic link
+3- Crear un symbolic link
+~~~
 	$ sudo ln -s /usr/local/bin/docker-compose /usr/bin/docker-compose
+~~~
 
-### 4 - Ver versión 
+4- Ver versión 
+~~~
 	$ docker-compose --version
+~~~
 
-### 5 - Ajustar Permisos
+5- Ajustar Permisos
+~~~
 	$ sudo chmod 666 /var/run/docker.sock
+~~~
 
 ---
 
+## COMENZAR A USAR CONTENEDORES
+
+	$ docker network create \
+		--driver=bridge \
+		--subnet=172.80.80.0/24 \
+		--gateway=172.80.80.1 \
+		-o "com.docker.network.bridge.name"="net_betox" \
+		net_betox
+
+---
 ## LISTA DE COMANDOS
 
-### Manual de Ejecución
-1. Posicionarse en la carpeta del docker a ejecutar
+Posicionarse en la carpeta del docker a ejecutar
 	cd /repo_dockers
 
 | Commands  | Description  |
@@ -87,7 +110,7 @@ Ejecutar en la raiz de la capeta el sigiente comando
 | docker ps -a | para ver la lista de todos los contenedores.  |
 | docker system prune -a | Depurar todos los containers en stop, networks, images, build cache.  |
 
-### Lista de Dockers
+## LISTA DE DOCKERS
 
 | Nombre  | Description  |
 |---|---|
@@ -105,30 +128,12 @@ Ejecutar en la raiz de la capeta el sigiente comando
 
 ## Configurar Xdebug 3.0.3 Linux
 
-### 1 - Configurar un firewall con UFW
-habilitar ufw 
-
-	$ sudo ufw enable
-
-Validar que este enable ufw 
-
-	$ sudo ufw status
-
-Añadir nueva regla de firewall
-
-	$ sudo ufw allow in from {host.docker.internal}/16 to any port 9003 comment xdebug
-
-remplazar el host.docker.internal por el host que se comunica docker, para ver ip ingresar 
-
-	$ ip address
-Buscar la ip de la red docker
-
-### 2 - Ajustar la config de XDebug en el docker-compose
+### Ajustar la config de XDebug en el docker-compose
 
 	environment:
     	XDEBUG_CONFIG: client_host={host.docker.internal} client_port=9003 remote_enable=1 profiler_enable=1
 
-### 3 - Configurar el Vcode y XDebug
+### Configurar el Vcode y XDebug
 
 	"configurations": [
 		{
@@ -149,8 +154,6 @@ Buscar la ip de la red docker
 			}
 		}
 	]
-
-
 ---
 </br>
 </br>

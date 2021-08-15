@@ -1,9 +1,8 @@
 version: '3.8'
 
 networks:
-    net_service:
-        name: net_service
-        driver: bridge
+    net_betox:
+        name: net_betox
 
 volumes:
     mariadb_data:
@@ -21,7 +20,7 @@ services:
         volumes:
             - mariadb_data:/var/lib/mariadb
         networks:
-            - net_service
+            - net_betox
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -37,4 +36,4 @@ services:
         ports:
             - 8080:80
         networks:
-            - net_service
+            - net_betox

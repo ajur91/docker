@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_service:
+    net_betox:
         external:
-            name: net_service
+            name: net_betox
 
 volumes:
     portainer_data:

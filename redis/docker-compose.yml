@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-    net_service:
-        name: net_service
+    net_betox:
+        name: net_betox
 
 volumes:
     redis-data:
@@ -18,7 +18,7 @@ services:
         ports:
             - 6380:6379
         networks:
-            - net_service
+            - net_betox
 
     redis_session:
         image: redis:latest
@@ -30,7 +30,7 @@ services:
         ports:
             - 6381:6379
         networks:
-            - net_service
+            - net_betox
     
     redis-commander:
         image: rediscommander/redis-commander:latest
@@ -44,4 +44,4 @@ services:
             - redis_session
             - redis_cache
         networks:
-            - net_service
+            - net_betox

@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_service:
+    net_betox:
         external:
-            name: net_service
+            name: net_betox
 
 volumes:
     apache-sync-jmc:
@@ -18,4 +18,4 @@ services:
         volumes:
             - apache-sync-jmc:/var/www/html:nocopy,delegated
         networks:
-            - net_service
+            - net_betox
