@@ -24,9 +24,9 @@
 
 ### LINUX
 
-Ejecutar en la raiz de la capeta el sigiente comando
+Ejecutar el sigiente comando
 
-	$ sh docker-install
+	$ wget https://raw.githubusercontent.com/ajur91/docker/master/docker-install && sh docker-install
 
 ## INSTALACIÓN MANUAL
 
@@ -86,6 +86,7 @@ Ejecutar en la raiz de la capeta el sigiente comando
 ---
 
 ## COMENZAR A USAR CONTENEDORES
+Para comenzar a usar los contenedores debe crear un red con el siguiente comando:
 
 	$ docker network create \
 		--driver=bridge \
