@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 echo "
 =================================
-INSTALL DOCKER AND DOCKER-COMPOSE
+DOCKER AND DOCKER-COMPOSE INSTALLER
 ---------------------------------
 \e[33mv.1.0.0\e[0m
 =================================
