@@ -24,7 +24,7 @@
 
 ### LINUX
 
-Ejecutar el sigiente comando
+Ejecutar el siguiente comando
 
 	$ wget https://raw.githubusercontent.com/ajur91/docker/master/docker-install && sh docker-install && rm docker-install
 
