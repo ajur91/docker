@@ -1,0 +1,35 @@
+version: "3.4"
+
+networks:
+    net_betox:
+        external:
+            name: net_betox
+
+volumes:
+    dbdata:
+        driver: local
+
+services:
+    netdata:
+        image: netdata/netdata:v1.19.0
+        restart: always
+        ports: 
+            - 8080:19999
+        expose:
+            - "19999"
+        volumes:
+            - /etc/passwd:/host/etc/passwd:ro
+            - /etc/group:/host/etc/group:ro
+            - /proc:/host/proc:ro
+            - /sys:/host/sys:ro
+            - /var/run/docker.sock:/var/run/docker.sock:ro
+            - netdata-etc:/etc/netdata
+        cap_add:
+            - SYS_PTRACE
+        security_opt:
+            - apparmor=unconfined
+        environment:
+            - VIRTUAL_PORT=19999
+            - DOCKER_HOST=proxy:2375
+            - PGID=999
+            - VIRTUALIZATION=kvm

@@ -1,0 +1,38 @@
+version: "3.4"
+networks:
+    net_betox:
+        external:
+            name: net_betox
+
+volumes:
+    dbdata:
+        driver: local
+
+services:
+    mailserver:
+        image: analogic/poste.io:latest                                                                                    
+        container_name: poste.io                                                                                    
+        hostname: example.com                                                                              
+        restart: always
+        ports:                
+            - '25:25'    # SMTPS - mostly processing incoming mails
+            - '465:465'    # SMTPS - mostly processing incoming mails
+            - '81:80'  # HTTP - redirect to https (see options) and authentication for Let's encrypt service  
+            - '110:110'  #  POP3 - standard protocol for accessing mailbox, STARTTLS is required before client auth                                                                                                                   
+            - '143:143'  #  IMAP - standard protocol for accessing mailbox, STARTTLS is required before client auth
+            - '8443:443'  #  HTTPS - access to administration or webmail client                                
+            - '587:587'  #  MSA - SMTP port used primarily for email clients after STARTTLS and auth            
+            - '993:993'  #  IMAPS - alternative port for IMAP encrypted since connection                        
+            - '995:995'  #  POP3S - encrypted POP3 since connections                                            
+        environment:                                                                                               
+            - HOSTNAME=mail.example.com
+            - HTTPS=OFF                                                                                         
+            #- DISABLE_CLAMAV=TRUE                                                                            
+            - LETSENCRYPT_EMAIL=postmaster@example.com                                                     
+            - LETSENCRYPT_HOST=example.com                                                                  
+            - VIRTUAL_HOST=mail.example.com                                                             
+        volumes:                                                                                                    
+            - './containers/poste.io/data:/data'                                                                
+            - '/etc/localtime:/etc/localtime:ro'
+        networks:
+            - net_betox

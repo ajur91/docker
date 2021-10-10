@@ -1,0 +1,16 @@
+version: '3.8'
+
+networks:
+    net_betox:
+        external:
+            name: net_betox
+
+services:
+    go:
+        image: betox/go
+        environment:
+            - TEST_ENV=test
+        volumes:
+            - .:/home
+        networks:
+            - net_betox

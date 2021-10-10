@@ -1,0 +1,19 @@
+version: '3.8'
+
+networks:
+    net_betox:
+        external:
+            name: net_betox
+
+services:
+    coredns:
+        image: "coredns/coredns"
+        restart: always
+        container_name: dns
+        command: -conf /root/Corefile
+        ports:
+            - "53:53/udp"
+        volumes:
+            - $PWD/zones:/root
+        networks:
+            - net_betox

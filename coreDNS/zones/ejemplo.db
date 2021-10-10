@@ -1,0 +1,36 @@
+albertourbaez.com.              IN  SOA ns1.albertourbaez.com. info.albertourbaez.com. 2015082542 7200 3600 1209600 3600
+@                               IN  NS  ns1.albertourbaez.com.
+@                               IN  NS  ns1.albertourbaez.com.
+server1.albertourbaez.com.      IN  A   192.168.1.1
+server2.albertourbaez.com.      IN  A   192.168.1.2
+server3.albertourbaez.com.      IN  A   192.168.1.3
+server4.albertourbaez.com.      IN  A   192.168.1.3
+www.albertourbaez.com.          IN  CNAME   server1
+albertourbaez.com.              IN  MX  10 albertourbaez.com.
+
+
+ejemplo.com.        IN  SOA ns1.ejemplo.com. peladonerd.ejemplo.com. 2015082542 7200 3600 1209600 3600
+server1.ejemplo.com.    IN  A   192.168.1.1
+server2.ejemplo.com.    IN  A   192.168.1.2
+server3.ejemplo.com.    IN  A   192.168.1.3
+server4.ejemplo.com.    IN  A   192.168.1.3
+www.ejemplo.com.        IN  CNAME   server1
+
+
+
+$ORIGIN albertourbaez.com.
+@	3600 IN	SOA ns1.albertourbaez.com. info.albertourbaez.com. (
+				2021102101 ; serial
+				7200       ; refresh (2 hours)
+				3600       ; retry (1 hour)
+				1209600    ; expire (2 weeks)
+				3600       ; minimum (1 hour)
+				)
+
+	3600 IN NS ns1.albertourbaez.com.
+	3600 IN NS ns2.albertourbaez.com.
+	3600 IN NS ns3.albertourbaez.com.
+	3600 IN NS ns4.albertourbaez.com.
+
+www     IN A     104.156.53.115
+        IN AAAA  ::1
