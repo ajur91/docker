@@ -55,13 +55,13 @@ RUN docker-php-ext-install mysqli && docker-php-ext-enable mysqli
 
 # INSTALL XDEBUG
 # -----------------------------
-RUN pecl install -f xdebug-3.0.3
-RUN docker-php-ext-enable xdebug
+# RUN pecl install -f xdebug-3.0.3
+# RUN docker-php-ext-enable xdebug
 
 # CONFIGURING SYSTEM
 # -----------------------------
 ADD .docker/config/php.ini /usr/local/etc/php/php.ini
-ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/xdebug.ini
+# ADD .docker/config/XDebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 RUN chmod 777 -Rf /var/www /var/www/.* \
   && chown -Rf www-data:www-data /var/www /var/www/.* \

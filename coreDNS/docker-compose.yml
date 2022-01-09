@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local
 
 services:
     coredns:
@@ -16,4 +16,4 @@ services:
         volumes:
             - $PWD/zones:/root
         networks:
-            - net_betox
+            - net_local

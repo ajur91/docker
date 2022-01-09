@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-    net_betox:
-        name: net_betox
+    net_local:
+        name: net_local
 
 services:
     mailhog:
@@ -13,4 +13,4 @@ services:
             - 1025:1025 # smtp server
             - 8025:8025 # web ui
         networks:
-            - net_betox
+            - net_local

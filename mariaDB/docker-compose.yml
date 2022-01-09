@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-    net_betox:
-        name: net_betox
+    net_local:
+        name: net_local
 
 volumes:
     mariadb_data:
@@ -20,7 +20,7 @@ services:
         volumes:
             - mariadb_data:/var/lib/mariadb
         networks:
-            - net_betox
+            - net_local
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -36,4 +36,4 @@ services:
         ports:
             - 8080:80
         networks:
-            - net_betox
+            - net_local

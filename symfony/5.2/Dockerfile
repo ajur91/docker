@@ -1,4 +1,4 @@
-FROM betox/php:8.0
+FROM betox/php:7.4
 
 LABEL "AUTHOR" Alberto Urbaez <albertourbaez20@gmail.com>
 

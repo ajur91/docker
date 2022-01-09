@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-    net_betox:
-        name: net_betox
+    net_local:
+        name: net_local
 
 services:
     adminer:
@@ -11,4 +11,4 @@ services:
         ports:
             - 8082:8080
         networks:
-            - net_betox
+            - net_local

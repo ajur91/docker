@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local
 
 volumes:
     mysql_data:
@@ -21,7 +21,7 @@ services:
         volumes:
             - mysql_data:/var/lib/mysql
         networks:
-            - net_betox
+            - net_local
 
     phpmyadmin:
         image: phpmyadmin/phpmyadmin
@@ -37,4 +37,4 @@ services:
         ports:
             - 8080:80
         networks:
-            - net_betox
+            - net_local

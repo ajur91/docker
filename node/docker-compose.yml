@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local
 services:
     nodejs:
         image: betox/node:14
@@ -15,7 +15,7 @@ services:
         environment:
             NODE_ENV: development
         networks:
-            - net_betox
+            - net_local
 
 
         container_name: node_${NODEJS_SERVER_NAME}

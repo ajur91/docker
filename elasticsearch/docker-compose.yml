@@ -5,8 +5,8 @@ volumes:
         driver: local
 
 networks:
-    net_betox:
-        name: net_betox
+    net_local:
+        name: net_local
 
 services:
     elasticsearch:

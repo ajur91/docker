@@ -10,9 +10,9 @@ services:
         - ~/.docker-conf/rabbitmq/data/:/var/lib/rabbitmq/mnesia
         - ~/.docker-conf/rabbitmq/log/:/var/log/rabbitmq/mnesia
     networks:
-        - net_betox
+        - net_local
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local

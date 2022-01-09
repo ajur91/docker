@@ -1,8 +1,8 @@
 version: '3.8'
 
 networks:
-    net_betox:
-        name: net_betox
+    net_local:
+        name: net_local
 
 volumes:
     oracle_data:
@@ -18,4 +18,4 @@ services:
         volumes:
             - oracle_data:/var/lib/oracle
         networks:
-            - net_betox
+            - net_local

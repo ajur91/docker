@@ -1,8 +1,8 @@
 version: "3.3"
 
 networks:
-    net_betox:
-        name: net_betox
+    net_local:
+        name: net_local
 
 services:
     traefik:
@@ -11,7 +11,7 @@ services:
         command:
             #- "--log.level=DEBUG"
             - "--api.insecure=true"
-            - "--providers.docker.network=net_betox"
+            - "--providers.docker.network=net_local"
             - "--providers.docker=true"
             - "--providers.docker.exposedbydefault=false"
             #   - "--providers.docker.defaultRule=Host(`{{ trimPrefix `/` .Name }}.localhost`)"
@@ -22,7 +22,7 @@ services:
         volumes:
             - "/var/run/docker.sock:/var/run/docker.sock:ro"
         networks:
-            - net_betox
+            - net_local
 
     whoami:
         image: "traefik/whoami"
@@ -32,4 +32,4 @@ services:
             - "traefik.http.routers.whoami.rule=Host(`whoami.localhost`)"
             - "traefik.http.routers.whoami.entrypoints=web"
         networks:
-            - net_betox
+            - net_local

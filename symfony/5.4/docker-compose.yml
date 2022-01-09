@@ -1,13 +1,13 @@
 version: '3.8'
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local
 
 services:
     web:
-        image: betox/symfony:5.2
+        image: betox/symfony:5.x
         ports:
             - 8000:80
         volumes:
@@ -16,4 +16,4 @@ services:
             # XDEBUG_CONFIG: client_host=172.20.0.1 client_port=9003 remote_enable=1 profiler_enable=1
             # PHP_IDE_CONFIG: "serverName=Docker"
         networks:
-            - net_betox
+            - net_local

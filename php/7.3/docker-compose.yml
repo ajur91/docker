@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local
 services:
     web:
         image: betox/php:7.3
@@ -17,4 +17,4 @@ services:
             # XDEBUG_CONFIG: client_port=9003 client_host=172.17.0.1
             PHP_IDE_CONFIG: "serverName=Docker"
         networks:
-            - net_betox
+            - net_local

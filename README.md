@@ -92,8 +92,8 @@ Para comenzar a usar los contenedores debe crear un red con el siguiente comando
 		--driver=bridge \
 		--subnet=172.80.80.0/24 \
 		--gateway=172.80.80.1 \
-		-o "com.docker.network.bridge.name"="net_betox" \
-		net_betox
+		-o "com.docker.network.bridge.name"="net_local" \
+		net_local
 
 ---
 ## LISTA DE COMANDOS

@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local
     net_redis:
         external:
             name: NetRedis
@@ -19,7 +19,7 @@ services:
         volumes:
             - apache-sync-jmc:/var/www/html:nocopy,delegated
         networks:
-            - net_betox
+            - net_local
             - net_redis
             - net_mail
 

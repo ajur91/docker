@@ -1,7 +1,7 @@
 version: '3.8'
 networks:
-    net_betox:
-        name: net_betox
+    net_local:
+        name: net_local
 
 volumes:
     mongodb_data:
@@ -20,4 +20,4 @@ services:
         volumes:
             - mongodb_data:/data/mongodb
         networks:
-            - net_betox
+            - net_local

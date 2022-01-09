@@ -1,9 +1,9 @@
 version: '3.8'
 
 networks:
-    net_betox:
+    net_local:
         external:
-            name: net_betox
+            name: net_local
 
 services:
     web:
@@ -16,4 +16,4 @@ services:
             - ~/.composer:/var/www/.composer
             - ~/.npm:/var/www/.npm
         networks:
-            - net_betox
+            - net_local
